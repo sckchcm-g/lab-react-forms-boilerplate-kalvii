@@ -3,7 +3,7 @@ import './App.css'
 import { useEffect } from "react";
 
 function App() {
-  const inputvalue = { username: '', email: '', password: '' }
+  const inputvalue = { username: '',username2: '', email: '', contact: '' }
   const [data, setData] = useState(inputvalue);
   const [errors, setErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
@@ -43,14 +43,6 @@ function App() {
       errors.email = "This is not a valid email format!";
     }
 
-    // if (!value.password) {
-    //   errors.password = "Password is required!";
-    // } else if (value.password.length < 4) {
-    //   errors.password = "Password must be more than 4 characters!";
-    // } else if (value.password.length > 10) {
-    //   errors.password = "Password cannot exceed more than 10 characters!";
-    // }
-
     if (!value.contact){
       errors.contact = "Contact number is required";
     } else if (value.contact.length !== 10) {
@@ -64,8 +56,8 @@ function App() {
     <>
     <div className="container">
       {Object.keys(errors).length === 0 && isSubmit ? 
-      (<div className= " message-success"><p>Signed in successfully</p></div>) : (
-        // <pre>{JSON.stringify(data, null, 2)}</pre>
+      (<div className= " message-success"><p>Signed in successfully</p></div>
+      ) : (
         <div></div>
       )}
 
@@ -82,12 +74,12 @@ function App() {
             className="textarea"
             type="text" 
             name="username" 
-            placeholder="Username" 
+            placeholder="First name" 
             value={data.username} 
             onChange={handleChange} 
             />
           </div>
-          <p>{errors.username}</p>
+          <p className="error-text">{errors.username}</p>
 
           <div className="field">
             <label>Last Name  </label> <br />
@@ -95,12 +87,12 @@ function App() {
             className="textarea"
             type="text" 
             name="username2" 
-            placeholder="Username" 
+            placeholder="Last name" 
             value={data.username2} 
             onChange={handleChange} 
             />
           </div>
-          <p>{errors.username}</p>
+          <p className="error-text">{errors.username2}</p>
 
 
           <div className="field">
@@ -109,25 +101,12 @@ function App() {
             className="textarea"
             type="text" 
             name="email" 
-            placeholder="Email" 
+            placeholder="xyz@gmail.com" 
             value={data.email} 
             onChange={handleChange} 
             />
           </div>
-          <p>{errors.email}</p>
-
-
-          {/* <div className="field">
-            <label>Password</label>
-            <input 
-            type="password" 
-            name="password" 
-            placeholder="Password" 
-            value={data.password} 
-            onChange={handleChange} 
-            />
-          </div>
-          <p>{errors.password}</p> */}
+          <p className="error-text">{errors.email}</p>
 
           <div className="field">
             <label>Contact no.  </label> <br />
@@ -140,7 +119,7 @@ function App() {
             onChange={handleChange} 
             />
           </div>
-          <p>{errors.contact}</p>
+          <p className="error-text">{errors.contact}</p>
 
           <button className="button">Submit</button>
         </div>
